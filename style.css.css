@@ -1,0 +1,225 @@
+/* ==========================================
+   VERTICAL VISION - PREMIUM NEON LIGHT DESIGN
+   ========================================== */
+
+/* Globální reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #060713; /* Ultra temná fialovo-černá barva pozadí */
+    color: #ffffff;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* ÚVODNÍ SEKCE (HERO) */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Luxusní přechod do ztracena */
+    background: radial-gradient(circle at center, #1a0b2e 0%, #060713 70%);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Velký zářící nadpis */
+.logo-text {
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.logo-text span {
+    color: #a855f7; /* Neonově fialová z vašeho loga */
+    position: relative;
+}
+
+.tagline {
+    font-size: 1.3rem;
+    color: #b4b4c6;
+    max-width: 650px;
+    margin: 0 auto 40px auto;
+}
+
+/* PREMIUM NEON TLAČÍTKO */
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background: linear-gradient(90deg, #a855f7 0%, #ec4899 100%); /* Fialovo-růžový gradient */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px; /* Kulaté moderní tlačítko */
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.6);
+    letter-spacing: 3px;
+}
+
+/* SEKCE PORTFOLIO */
+.portfolio {
+    padding: 120px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.portfolio h2, .contact h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.section-subtitle {
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin-bottom: 60px;
+}
+
+/* GRID SYSTÉM (KARTY PRO VIDEA) */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 sloupce na PC */
+    gap: 40px;
+}
+
+/* Luxusní karty pro videa */
+.portfolio-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(168, 85, 247, 0.3);
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.1);
+}
+
+/* Kontejner pro Instagram zobrazení */
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #000000;
+}
+
+/* Dočasný placeholder, než tam dáte další videa */
+.video-placeholder {
+    background: linear-gradient(180deg, #111322 0%, #0b0c16 100%);
+    height: 450px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b5563;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border: 1px dashed rgba(168, 85, 247, 0.2);
+}
+
+.portfolio-item h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+/* SEKCE KONTAKT */
+.contact {
+    padding: 120px 20px;
+    background: linear-gradient(180deg, #060713 0%, #020207 100%);
+    text-align: center;
+}
+
+.contact p {
+    color: #9ca3af;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+}
+
+.contact-info a {
+    color: #ec4899;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #a855f7;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+/* PATIČKA */
+footer {
+    padding: 50px 20px;
+    text-align: center;
+    color: #4b5563;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (AUTOMATICKY PRO MOBILY)
+   ========================================== */
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr; /* Na mobilu se karty hodí pod sebe */
+        gap: 30px;
+    }
+
+    .logo-text {
+        font-size: 2.8rem;
+        letter-spacing: 3px;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+
+    .portfolio, .contact {
+        padding: 80px 20px;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
