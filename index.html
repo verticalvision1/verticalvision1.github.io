@@ -3,154 +3,887 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertical Vision | Tvorba obsahu pro sociální sítě</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Vertical Vision | Video produkce</title>
+    <style>
+        :root {
+            --primary: #8a3ffc;
+            --primary-gradient: linear-gradient(135deg, #a259ff 0%, #00c6ff 100%);
+            --bg-dark: #0b0c10;
+            --bg-card: #1f2833;
+            --text-light: #f5f6fa;
+            --text-muted: #c5a880;
+            --accent: #00c6ff;
+            --text-gray: #a0a5b5;
+            --card-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .logo-img {
+            height: 45px;
+            width: 45px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-light);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Mobile Menu Setup */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 40px 20px;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(138, 63, 252, 0.15) 0%, rgba(11, 12, 16, 0) 70%);
+        }
+
+        .hero-content {
+            max-width: 850px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(138, 63, 252, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 63, 252, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Sections General */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Us Section */
+        .about-content {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .about-content p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Services & Technika Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 198, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        .services-note {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+
+        /* Portfolio / Our Work Section */
+        .portfolio-banner {
+            background: linear-gradient(135deg, rgba(138, 63, 252, 0.2) 0%, rgba(0, 198, 255, 0.2) 100%);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .portfolio-banner h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .portfolio-banner p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-social:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-ig {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .btn-yt {
+            background: #FF0000;
+        }
+
+        /* Cooperation Steps */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .step-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background: var(--primary-gradient);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .step-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .price-card.popular {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 198, 255, 0.15);
+            position: relative;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-gradient);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .price-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .price-amount span {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-weight: normal;
+        }
+
+        .price-card p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .pricing-custom {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+        
+        .pricing-custom p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .person-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--card-border);
+        }
+        
+        .person-card:last-child {
+            border-bottom: none;
+        }
+
+        .person-icon {
+            background: rgba(138, 63, 252, 0.1);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .person-info h4 {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .person-info a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .person-info a:hover {
+            color: var(--accent);
+        }
+
+        .company-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .company-info p {
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .company-info a {
+            color: var(--text-gray);
+            text-decoration: none;
+        }
+
+        /* Form */
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(0, 198, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #060709;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background: rgba(11, 12, 16, 0.98);
+                padding: 20px;
+                border-bottom: 1px solid var(--card-border);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .portfolio-banner {
+                padding: 30px 20px;
+            }
+            
+            .about-content {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
+    <!-- Header -->
+    <header>
         <div class="nav-container">
-            <div class="logo-area">
-                <div class="logo-circle">VV</div>
-                <span class="brand-name">VERTICAL <span>VISION</span></span>
-            </div>
-            <div class="nav-links">
-                <a href="#o-nas">O nás</a>
-                <a href="#portfolio">Tvorba</a>
-                <a href="#jak-fungujeme">Spolupráce</a>
-                <a href="#cenik">Ceník</a>
-                <a href="#kontakt">Kontakt</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-content">
-            <h1>VERTICAL <span>VISION</span></h1>
-            <p class="tagline">Tvoříme dravý a cinematic obsah pro sociální sítě. Pomáháme firmám a lokálním živnostníkům růst pomocí Reels, TikToků a YouTube Shorts.</p>
-            <a href="#portfolio" class="btn">Naše tvorba</a>
+            <a href="#" class="logo-box">
+                <!-- ZDE JE PŘIPOJENÉ TVÉ LOGO -->
+                <img src="logo Vertical Vision_2.jpg" alt="Vertical Vision Logo" class="logo-img">
+                <span class="logo-text">Vertical Vision</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="document.getElementById('nav-menu').classList.toggle('active')">☰</button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#domu" onclick="closeMenu()">Domů</a></li>
+                    <li><a href="#o-nas" onclick="closeMenu()">O nás</a></li>
+                    <li><a href="#sluzby" onclick="closeMenu()">Služby</a></li>
+                    <li><a href="#technika" onclick="closeMenu()">Technika</a></li>
+                    <li><a href="#spoluprace" onclick="closeMenu()">Spolupráce</a></li>
+                    <li><a href="#cenik" onclick="closeMenu()">Ceník</a></li>
+                    <li><a href="#kontakt" onclick="closeMenu()">Kontakt</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section id="o-nas" class="section about-section">
-        <div class="container">
-            <h2>O nás</h2>
-            <p class="about-text">Jsme mladý tým zapálených tvůrců, kteří se specializují na vertikální video produkci a moderní marketing. Kombinujeme pokročilé techniky střihu, dynamické záběry z dronů a strategické myšlení, abychom pro váš byznys vytvořili obsah, který reálně přitáhne zákazníky a nezapadne v hromadech jiných příspěvků.</p>
+    <!-- Hero -->
+    <section id="domu" class="hero">
+        <div class="hero-content">
+            <h1>Videa, která nejsou jen hezká, ale <span>přináší zákazníky</span></h1>
+            <p>Tvoříme moderní, krátká videa, která pomáhají firmám růst na sociálních sítích. Od tvorby až po výsledek.</p>
+            <div class="cta-buttons">
+                <a href="#prace" class="btn btn-primary">Chci vidět vaši práci</a>
+                <a href="#kontakt" class="btn btn-secondary">Nezávazná konzultace</a>
+            </div>
         </div>
     </section>
 
-    <section id="portfolio" class="section portfolio-section">
-        <div class="container">
-            <h2>Naše tvorba</h2>
-            <p class="section-subtitle">Ukázka našich reálných projektů a cinematic Reels.</p>
-            
-            <div class="grid portfolio-grid">
-                <div class="portfolio-card">
-                    <div class="video-container">
-                        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DYkejZksW_u/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#000; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DYkejZksW_u/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"></a></div></blockquote>
-                        <script async src="//www.instagram.com/embed.js"></script>
+    <!-- O nás -->
+    <section id="o-nas">
+        <div class="section-header">
+            <h2>Kdo jsme? <span>Vertical Vision</span></h2>
+        </div>
+        <div class="about-content">
+            <p>Vertical Vision vzniklo jako projekt dvou studentů, které spojila jedna věc – zájem o video a jeho schopnost měnit to, jak lidé vnímají značky.</p>
+            <p>Postupně jsme začali tvořit krátká videa pro sociální sítě a zjistili jsme, že právě tenhle formát má největší sílu. Během pár vteřin dokáže zaujmout, vyvolat emoci a přivést zákazníka. Tvoříme moderní, krátká videa (15–20 sekund), která pomáhají firmám růst na sociálních sítích. Zaměřujeme se na obsah, který není jen "hezký", ale hlavně funkční — tedy přináší pozornost a nové zákazníky. Součástí produkce jsou často i dronové záběry, které dodávají videím dynamiku a prémiový vzhled.</p>
+            <p><strong>Čím se lišíme?</strong><br>Nejsme velká agentura. Jsme dva lidé, kteří se starají o celý proces od začátku do konce. Díky tomu máme kontrolu nad kvalitou, stylem i výsledkem. Každé video je dělané na míru — nejedeme podle šablony, ale přemýšlíme nad tím, co konkrétní podnik skutečně potřebuje.</p>
+        </div>
+    </section>
+
+    <!-- Služby -->
+    <section id="sluzby">
+        <div class="section-header">
+            <h2>Naše <span>Služby</span></h2>
+            <p>Kompletní produkce od nápadu po hotové video.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Krátká Reels videa (15-20s)</h3>
+                <p>Obsah optimalizovaný pro sociální sítě, který zaujme během prvních vteřin a přivede pozornost ke značce.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚁</div>
+                <h3>Dronové záběry</h3>
+                <p>Dynamické a prémiové vizuály, které dodají vašemu obsahu profesionální vzhled a odliší vás od konkurence.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🖥️</div>
+                <h3>Videa na šířku</h3>
+                <p>Delší formáty vhodné pro web, reklamy nebo představení značky v detailu. (například 1-2 min.)</p>
+            </div>
+        </div>
+        <p class="services-note">Na základě domluvy je možné vytvořit i delší nebo specifické formáty videí podle potřeb vaší značky.</p>
+    </section>
+
+    <!-- Technika (NOVÁ SEKCE) -->
+    <section id="technika">
+        <div class="section-header">
+            <h2>Čím <span>natáčíme?</span></h2>
+            <p>Aby byl výsledek perfektní, spoléháme se na moderní a profesionální techniku.</p>
+        </div>
+        <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Telefony prémiové třídy</h3>
+                <p>Natáčíme na vlajkové lodě <strong>iPhone 17 Pro Max</strong> a <strong>Pixel 9</strong>. Tato kombinace nám zaručuje nepřekonatelnou stabilizaci obrazu, ostré detaily a dokonalé barvy pro jakýkoliv vertikální formát.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚁</div>
+                <h3>Dron DJI Neo 2</h3>
+                <p>Pro dynamické průlety a neobvyklé úhly využíváme kompaktní dron <strong>DJI Neo 2</strong>. Je obratný a dodá vašim videím přesně ten prémiový vzhled, který diváka okamžitě upoutá.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px;">
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 30px; border-radius: 16px; display: inline-block; max-width: 600px;">
+                <h3 style="margin-bottom: 15px; color: #fff;">Chcete vidět naši techniku v akci?</h3>
+                <p style="color: var(--text-gray); margin-bottom: 20px;">Podívejte se na ukázkové video s naší výbavou, které jsme pro vás připravili na Instagramu.</p>
+                <a href="https://www.instagram.com/p/DY2kVNos5RR/" target="_blank" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    Přehrát video na Instagramu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Naše práce (Odkazy na sítě) -->
+    <section id="prace">
+        <div class="portfolio-banner">
+            <h3>Chcete vidět naši práci?</h3>
+            <p>Sledujte nás na sociálních sítích, kde pravidelně sdílíme naše nejnovější projekty, zákulisí z natáčení a ukázky toho, co umíme.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/_verticalvision_/" target="_blank" class="btn-social btn-ig">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    Instagram
+                </a>
+                <a href="https://www.youtube.com/@Verticalvision1.1/shorts" target="_blank" class="btn-social btn-yt">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    YouTube Shorts
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jak probíhá spolupráce -->
+    <section id="spoluprace">
+        <div class="section-header">
+            <h2>Jak probíhá <span>spolupráce?</span></h2>
+            <p>Celý proces jsme zjednodušili, aby vás to stálo co nejméně času.</p>
+        </div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-title-wrap">
+                    <div class="step-number">1</div>
+                    <h3>Domluva</h3>
+                </div>
+                <p>Krátce si ujasníme cíl videa – osobně, telefonicky nebo online, podle toho, co vám vyhovuje.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-title-wrap">
+                    <div class="step-number">2</div>
+                    <h3>Natáčení</h3>
+                </div>
+                <p>Přijedeme na místo a natočíme vše potřebné rychle a efektivně.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-title-wrap">
+                    <div class="step-number">3</div>
+                    <h3>Postprodukce</h3>
+                </div>
+                <p>Video sestříháme, upravíme a připravíme pro sociální sítě.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-title-wrap">
+                    <div class="step-number">4</div>
+                    <h3>Dodání</h3>
+                </div>
+                <p>Hotové video dostanete připravené k okamžitému použití.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ceník -->
+    <section id="cenik">
+        <div class="section-header">
+            <h2>Ceník <span>Služeb</span></h2>
+            <p>Každý projekt je individuální, proto se finální cena může lišit podle rozsahu natáčení a požadovaného výstupu. Níže najdete orientační varianty spolupráce.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card popular">
+                <div class="popular-badge">Nejžádanější</div>
+                <h3>Krátké video pro sítě<br><span style="font-size:0.9rem; font-weight:normal; color:#a0a5b5;">(15-20s)</span></h3>
+                <p>Ideální pro Reels, Instagram nebo TikTok. Dynamický obsah navržený tak, aby rychle zaujal.</p>
+                <div class="price-amount">od 1999 <span>Kč</span></div>
+            </div>
+            <div class="price-card">
+                <h3>Dronové záběry<br><span style="font-size:0.9rem; font-weight:normal; color:#a0a5b5;">&nbsp;</span></h3>
+                <p>Letecké záběry, které dodají vašemu obsahu moderní a prémiový vizuální dojem.</p>
+                <div class="price-amount">od 2499 <span>Kč</span></div>
+            </div>
+            <div class="price-card">
+                <h3>Delší promo video<br><span style="font-size:0.9rem; font-weight:normal; color:#a0a5b5;">(1-1:30min)</span></h3>
+                <p>Vhodné pro web, reklamu nebo detailnější představení vašeho podniku či služby.</p>
+                <div class="price-amount">od 4499 <span>Kč</span></div>
+            </div>
+        </div>
+        <div class="pricing-custom">
+            <p>Máte specifickou představu nebo zájem o více videí? <a href="#kontakt" style="color:var(--accent);">Připravíme vám nabídku na míru.</a></p>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt">
+        <div class="section-header">
+            <h2>Ozvěte se <span>nám</span></h2>
+            <p>Jsme tu pro vás. Napište nám, nebo nám rovnou zavolejte.</p>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-details">
+                <h3>Vertical Vision</h3>
+                
+                <div class="person-card">
+                    <div class="person-icon">👤</div>
+                    <div class="person-info">
+                        <h4>Mikuláš Korýdek</h4>
+                        <a href="tel:+420734660970">+420 734 660 970</a>
                     </div>
-                    <h3>Gastro & Lokální Byznys</h3>
                 </div>
-
-                <div class="portfolio-card">
-                    <div class="video-placeholder">
-                        <span>Dynamic Reels / Barber</span>
+                
+                <div class="person-card">
+                    <div class="person-icon">👤</div>
+                    <div class="person-info">
+                        <h4>Robin Petrus</h4>
+                        <a href="tel:+420702322222">+420 702 322 222</a>
                     </div>
-                    <h3>Reference & Profi Edit</h3>
                 </div>
 
-                <div class="portfolio-card">
-                    <div class="video-placeholder">
-                        <span>FPV & Drone Shots</span>
+                <div class="company-info">
+                    <p>📧 <a href="mailto:vertical.vision1.1@gmail.com">vertical.vision1.1@gmail.com</a></p>
+                    <p>🏢 IČO: 24961175</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" onsubmit="alert('Pro odesílání je potřeba nastavit Formspree ID.'); return false;">
+                    <div class="form-group">
+                        <label for="name">Jméno / Firma</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
-                    <h3>Záběry z dronu</h3>
-                </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Vaše představa</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Odeslat zprávu</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <section id="jak-fungujeme" class="section steps-section">
-        <div class="container">
-            <h2>Jak probíhá spolupráce</h2>
-            <p class="section-subtitle">Jednoduchý proces od první myšlenky až po hotové video na vašich sítích.</p>
-            
-            <div class="grid steps-grid">
-                <div class="step-card">
-                    <div class="step-num">1</div>
-                    <h3>Konzultace a koncept</h3>
-                    <p>Probereme vaše cíle, prozkoumáme vaši cílovou skupinu a vymyslíme kreativní koncept a scénář pro videa.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">2</div>
-                    <h3>Profesionální natáčení</h3>
-                    <p>Přijedeme na místo s profi technikou, drony a stabilizátory. Natočíme dravé, ostré a moderní záběry.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">3</div>
-                    <h3>Postprodukce a nasazení</h3>
-                    <p>Videa sestříháme, nabarvíme (color grading), přidáme sound design, trendy hudbu a dodáme vám hotový formát ready pro sítě.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="cenik" class="section ceník-section">
-        <div class="container">
-            <h2>Orientační ceník</h2>
-            <p class="section-subtitle">Každý projekt stavíme na míru, ale pro představu nabízíme základní balíčky.</p>
-            
-            <div class="grid pricelist-grid">
-                <div class="price-card">
-                    <h3>Starter</h3>
-                    <div class="price">Na míru</div>
-                    <ul>
-                        <li>1-2 produktová / promo Reels</li>
-                        <li>Základní střih a color grading</li>
-                        <li>Ideální pro začátek nebo vyzkoušení</li>
-                    </ul>
-                </div>
-                <div class="price-card featured">
-                    <div class="badge">Nejpopulárnější</div>
-                    <h3>Business Grow</h3>
-                    <div class="price">Na míru</div>
-                    <ul>
-                        <li>Kompletní balíček videí na měsíc</li>
-                        <li>Letecké záběry z dronu (FPV/DJI)</li>
-                        <li>Pokročilý sound design a trendový střih</li>
-                    </ul>
-                </div>
-                <div class="price-card">
-                    <h3>Individual</h3>
-                    <div class="price">Dle dohody</div>
-                    <ul>
-                        <li>Dlouhodobá správa obsahu sítě</li>
-                        <li>Kompletní video marketingová strategie</li>
-                        <li>Individuální termíny a asistence</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="kontakt" class="section contact-section">
-        <div class="container">
-            <h2>Pojďme do toho šlápnout spolu</h2>
-            <p>Máte zájem o spolupráci nebo chcete nezávaznou konzultaci? Ozvěte se nám.</p>
-            
-            <div class="contact-box">
-                <p><strong>Email:</strong> <a href="mailto:info@verticalvision.cz">info@verticalvision.cz</a></p>
-                <p><strong>Instagram:</strong> <a href="https://www.instagram.com/_verticalvision_/" target="_blank">@_verticalvision_</a></p>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Vertical Vision. Všechna práva vyhrazena.</p>
-        </div>
+        <p>&copy; 2026 Vertical Vision. IČO: 24961175. Všechna práva vyhrazena.</p>
     </footer>
 
+    <script>
+        function closeMenu() {
+            document.getElementById('nav-menu').classList.remove('active');
+        }
+    </script>
 </body>
 </html>
