@@ -389,83 +389,62 @@
             font-size: 0.95rem;
         }
 
-        /* Pricing Section */
-        .pricing-grid {
+        /* References Section */
+        .references-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .reference-big-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-left: 4px solid var(--primary);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .reference-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .reference-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-icon {
+            font-size: 1.5rem;
+            background: rgba(138, 63, 252, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author-info h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .author-info p {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .reference-small-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-        }
-
-        .price-card {
-            background: var(--bg-card);
-            border: 1px solid var(--card-border);
-            padding: 40px 30px;
-            border-radius: 16px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .price-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .price-card.popular {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(0, 198, 255, 0.15);
-            position: relative;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary-gradient);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .price-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--text-light);
-        }
-
-        .price-amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .price-amount span {
-            font-size: 1rem;
-            color: var(--text-gray);
-            font-weight: normal;
-        }
-
-        .price-card p {
-            color: var(--text-gray);
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
-
-        .pricing-custom {
-            text-align: center;
-            margin-top: 50px;
-            padding: 30px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 16px;
-            border: 1px dashed rgba(255,255,255,0.1);
-        }
-        
-        .pricing-custom p {
-            color: var(--text-light);
-            font-size: 1.1rem;
         }
 
         /* Contact Section */
@@ -588,9 +567,6 @@
             .contact-wrapper {
                 grid-template-columns: 1fr;
             }
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 768px) {
@@ -650,7 +626,7 @@
                     <li><a href="#sluzby" onclick="closeMenu()">Služby</a></li>
                     <li><a href="#technika" onclick="closeMenu()">Technika</a></li>
                     <li><a href="#spoluprace" onclick="closeMenu()">Spolupráce</a></li>
-                    <li><a href="#cenik" onclick="closeMenu()">Ceník</a></li>
+                    <li><a href="#reference" onclick="closeMenu()">Reference</a></li>
                     <li><a href="#kontakt" onclick="closeMenu()">Kontakt</a></li>
                 </ul>
             </nav>
@@ -707,17 +683,17 @@
         <p class="services-note">Na základě domluvy je možné vytvořit i delší nebo specifické formáty videí podle potřeb vaší značky.</p>
     </section>
 
-    <!-- Technika (NOVÁ SEKCE) -->
+    <!-- Technika -->
     <section id="technika">
         <div class="section-header">
             <h2>Čím <span>natáčíme?</span></h2>
             <p>Aby byl výsledek perfektní, spoléháme se na moderní a profesionální techniku.</p>
         </div>
-        <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">📱</div>
                 <h3>Telefony prémiové třídy</h3>
-                <p>Natáčíme na vlajkové lodě <strong>iPhone 17 Pro Max</strong> a <strong>Pixel 9</strong>. Tato kombinace nám zaručuje nepřekonatelnou stabilizaci obrazu, ostré detaily a dokonalé barvy pro jakýkoliv vertikální formát.</p>
+                <p>Natáčíme na vlajkové lodě <strong>iPhone 17 Pro Max</strong> and <strong>Pixel 9</strong>. Tato kombinace nám zaručuje nepřekonatelnou stabilizaci obrazu, ostré detaily a dokonalé barvy pro jakýkoliv vertikální formát.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🚁</div>
@@ -794,32 +770,44 @@
         </div>
     </section>
 
-    <!-- Ceník -->
-    <section id="cenik">
+    <!-- Reference -->
+    <section id="reference">
         <div class="section-header">
-            <h2>Ceník <span>Služeb</span></h2>
-            <p>Každý projekt je individuální, proto se finální cena může lišit podle rozsahu natáčení a požadovaného výstupu. Níže najdete orientační varianty spolupráce.</p>
+            <h2>Co o nás <span>říkají klienti?</span></h2>
+            <p>Spokojenost našich zákazníků a reálné výsledky jsou pro nás na prvním místě.</p>
         </div>
-        <div class="pricing-grid">
-            <div class="price-card popular">
-                <div class="popular-badge">Nejžádanější</div>
-                <h3>Krátké video pro sítě<br><span style="font-size:0.9rem; font-weight:normal; color:#a0a5b5;">(15-20s)</span></h3>
-                <p>Ideální pro Reels, Instagram nebo TikTok. Dynamický obsah navržený tak, aby rychle zaujal.</p>
-                <div class="price-amount">od 1999 <span>Kč</span></div>
+        <div class="references-container">
+            <!-- Velká detailní reference -->
+            <div class="reference-big-card">
+                <div class="reference-text">
+                    "S klukama to byla od začátku naprostá pecka. Hledali jsme někoho, kdo nám udělá reelska pro náš barbershop, a oni přišli s nápady, které měly hlavu a patu. Co nás fakt bavilo, byl jejich cit pro detail 👌 dokážou do videa dostat přesně ty věci, které lidi baví a zároveň pro nás byly třeba důležité, aby na videu byly.<br><br>
+                    Domluva byla úplně na pohodu, otevřená a přátelská. Když jsme chtěli nějaký záběr upravit nebo předělat podle našich představ, neměli s tím sebemenší problém a hned to vyřešili. Rychlost, jakou pracují je neskutečná a poměr cena/výkon je prostě top 🤩<br><br>
+                    A to nejlepší? Videa fungují skvěle. Neuplynul ani týden od vydání a máme super ohlasy, rostou nám sledující, a co je hlavní ☝️ už nám to přivedlo i nové platící klienty do křesla. Mikiho a Robina doporučujeme všemi deseti!"
+                </div>
+                <div class="reference-author">
+                    <div class="author-icon">💈</div>
+                    <div class="author-info">
+                        <h4>Prime Cut Barbershop</h4>
+                        <p>Spokojený zákazník</p>
+                    </div>
+                </div>
             </div>
-            <div class="price-card">
-                <h3>Dronové záběry<br><span style="font-size:0.9rem; font-weight:normal; color:#a0a5b5;">&nbsp;</span></h3>
-                <p>Letecké záběry, které dodají vašemu obsahu moderní a prémiový vizuální dojem.</p>
-                <div class="price-amount">od 2499 <span>Kč</span></div>
+
+            <!-- Menší reference grid -->
+            <div class="reference-small-grid">
+                <div class="reference-big-card" style="padding: 30px; margin-bottom: 0;">
+                    <div class="reference-text" style="font-size: 1rem; margin-bottom: 15px;">
+                        "Profesionální přístup, ochotní přizpůsobit vize zákazníka a především kvalitní short videa. Díky kluci"
+                    </div>
+                    <div class="reference-author">
+                        <div class="author-icon">🍣</div>
+                        <div class="author-info">
+                            <h4>Tobiko Sushi</h4>
+                            <p>Kvalitní short videa</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="price-card">
-                <h3>Delší promo video<br><span style="font-size:0.9rem; font-weight:normal; color:#a0a5b5;">(1-1:30min)</span></h3>
-                <p>Vhodné pro web, reklamu nebo detailnější představení vašeho podniku či služby.</p>
-                <div class="price-amount">od 4499 <span>Kč</span></div>
-            </div>
-        </div>
-        <div class="pricing-custom">
-            <p>Máte specifickou představu nebo zájem o více videí? <a href="#kontakt" style="color:var(--accent);">Připravíme vám nabídku na míru.</a></p>
         </div>
     </section>
 
